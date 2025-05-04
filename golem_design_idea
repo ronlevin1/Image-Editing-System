@@ -1,0 +1,94 @@
+**Proposed High-Level Structure**
+
+1. **CLI Layer**
+
+   * **Component**: `EntryPoint`
+   * **Category**: Application-level / Orchestration
+   * **Responsibility**: parse `--config` arg, invoke Config Loader and Editor pipeline.
+
+2. **Configuration**
+
+   * **Component**: `ConfigLoader` + `ConfigValidator`
+   * **Category**: Utility / Creational (Factory-adjacent)
+   * **Responsibility**: read JSON, validate required fields (`input`, `output` or `display`, ops list), emit a `Config` data object.
+
+3. **Factory**
+
+   * **Component**: `OperationFactory`
+   * **Category**: Creational (Factory)
+   * **Responsibility**: for each op descriptor in the config, return an instance of the appropriate `Operation` subclass (e.g. `BoxBlur`, `Sobel`, `Brightness`, etc.) with its parameters.
+
+4. **Core Data**
+
+   * **Component**: `ImageData`
+   * **Category**: Data Model
+   * **Responsibility**: wraps a NumPy array, offers `load()`, `save()`, `display()`.
+
+5. **Operation Interface**
+
+   * **Component**: abstract base `Operation`
+   * **Category**: Structural (Component in Decorator)
+   * **Responsibility**: defines `apply(image: ImageData) → ImageData`.
+
+6. **Decorator Base**
+
+   * **Component**: `FilterDecorator` (inherits `Operation`)
+   * **Category**: Structural (Decorator)
+   * **Responsibility**: holds a reference to another `Operation`, delegates `apply()`, enabling chaining.
+
+7. **Concrete Operations**
+
+   * **Filters (Decorator subclasses)**:
+
+     * `BoxBlurFilter(width, height)`
+     * `SobelFilter()`
+     * `SharpenFilter(alpha)`
+   * **Adjustments (Decorator subclasses)**:
+
+     * `BrightnessAdjustment(value)`
+     * `ContrastAdjustment(value)`
+     * `SaturationAdjustment(value)`
+   * **Category**: Structural (Concrete Decorators)
+   * **Responsibility**: override `apply()`, perform convolution or pixel transforms, then pass result to wrapped operation.
+
+8. **Pipeline**
+
+   * **Component**: `EditorPipeline`
+   * **Category**: Behavioral (Chain of Responsibility / Composite-like)
+   * **Responsibility**: link all `Operation` instances in sequence (using `FilterDecorator` chain) and execute `first.apply(image)`.
+
+9. **Convolution Engine**
+
+   * **Component**: `Convolver`
+   * **Category**: Behavioral (Strategy)
+   * **Responsibility**: low-level routines to slide kernels over image arrays; used internally by filters.
+
+10. **Error Handling & Logging**
+
+    * **Component**: `ErrorReporter`, optional `Logger`
+    * **Category**: Utility
+    * **Responsibility**: emit clear messages on invalid config, I/O failures, or algorithm errors.
+
+---
+
+### Design Rationale
+
+* **Decorator Pattern for Filters & Adjustments**
+  Each image operation wraps another operation, so you can build an arbitrary chain without hard-coding sequences. Adding a new filter means simply creating a new `ConcreteDecorator` subclass—no changes to existing code.
+
+* **Factory for Instantiation**
+  Decouples parsing JSON from knowing about concrete classes. To add a new op type, you register it in the factory only.
+
+* **Separation of Concerns**
+
+  * I/O (loading/saving/display) lives in `ImageData`.
+  * Config concerns live in `ConfigLoader`/`Validator`.
+  * Algorithmic guts (convolution) live in `Convolver`.
+  * Orchestration lives in `EntryPoint` and `EditorPipeline`.
+
+* **Behavioral Patterns**
+
+  * **Chain of Responsibility** (via decorator chaining) ensures each operation both applies its logic and forwards execution.
+  * **Strategy** (`Convolver`) lets you swap convolution implementations (e.g. naive vs. optimized) without touching filters.
+
+This modular, pattern-driven design maximizes **extensibility**, **testability**, and **clarity**.
