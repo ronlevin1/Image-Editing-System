@@ -7,7 +7,8 @@ image_editor/
 │   ├── __init__.py
 │   ├── image_data.py     # Core ImageData class
 │   ├── config.py         # Configuration loading and validation
-│   └── utils.py          # Convolution engine and helper functions
+│   ├── convolver.py      # Convolution engine
+│   └── utils.py          # helper functions
 ├── operations/
 │   ├── __init__.py
 │   ├── operation.py      # Abstract Operation interface

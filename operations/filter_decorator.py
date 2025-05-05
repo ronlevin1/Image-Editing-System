@@ -11,15 +11,15 @@ class FilterDecorator(Operation):
     Similar to Java's Decorator pattern implementation.
     """
 
-    def __init__(self, wrapped_operation: Operation = None):
+    def __init__(self, next_filter: Operation = None):
         """
         Constructor for the FilterDecorator class.
 
         Args:
-            wrapped_operation: The operation to be called after this one
+            next_filter: The operation to be called after this one
         """
         super().__init__()
-        self._wrapped = wrapped_operation
+        self._next_filter = next_filter
 
     def apply(self, image_data: Any) -> Any:
         """
@@ -32,12 +32,12 @@ class FilterDecorator(Operation):
         Returns:
             The processed image data
         """
-        processed_data = self._apply_filter(image_data)
+        processed_img = self._apply_filter(image_data)
 
-        if self._wrapped is None:
-            return processed_data
+        if self._next_filter is None:
+            return processed_img
         else:
-            return self._wrapped.apply(processed_data)
+            return self._next_filter.apply(processed_img)
 
     @abstractmethod
     def _apply_filter(self, image_data: Any) -> Any:
