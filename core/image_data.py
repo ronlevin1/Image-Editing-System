@@ -2,11 +2,20 @@ from PIL import Image
 import numpy as np
 import matplotlib.pyplot as plt
 
+"""
+ImageData: loading, saving, and displaying images.
+
+Prompts that influenced this implementation:
+  • “implement ImageData class to provide the functionality needed for this project”  
+"""
+
+
 class ImageData:
     """
     Core class for handling image I/O and display.
     Provides load, save, and show functionality.
     """
+
     def __init__(self, image_array: np.ndarray):
         self.image = image_array
 

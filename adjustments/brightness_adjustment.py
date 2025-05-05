@@ -3,6 +3,16 @@ import numpy as np
 from core.image_data import ImageData
 from operations.filter_decorator import FilterDecorator
 
+"""
+BrightnessFilter: scales pixel values to adjust brightness.
+
+Prompts that influenced this implementation:
+  • “lets implement the brightness adjustment…”  
+  • “explain” (why clip to [0,255])  
+  • “why this range is good? ([0.0, 3.0])”  
+  • “how do i chain filters? i.e brightness then boxblur”  
+"""
+
 
 class BrightnessFilter(FilterDecorator):
     """
@@ -17,6 +27,7 @@ class BrightnessFilter(FilterDecorator):
     Range:
         factor must be > 0. Recommended range [0.0, 3.0].
     """
+
     def __init__(self, factor: float, next_filter=None):
         super().__init__(next_filter)
         if factor <= 0:

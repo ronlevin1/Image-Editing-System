@@ -6,6 +6,14 @@ from operations.filter_decorator import FilterDecorator
 from filters.box_blur_filter import BoxBlurFilter
 from operations.operation import Operation
 
+"""
+NoOpFilter: passes image through unchanged.
+
+Prompts that influenced this implementation:
+  • “implement this one please”  
+  • “generate a test code for NoOpfilter”  
+"""
+
 
 class NoOpFilter(Operation):
     def apply(self, image_data: ImageData) -> ImageData:
@@ -14,6 +22,7 @@ class NoOpFilter(Operation):
 
 class DummyFilter(FilterDecorator):
     """A dummy filter that multiplies all pixels by 2."""
+
     def _apply_filter(self, image_data: ImageData) -> ImageData:
         arr = image_data.get_array()
         image_data.image = arr * 2
@@ -63,7 +72,7 @@ def test_blur():
     img = ImageData.load(image_path)
 
     # Configure box blur dimensions
-    width = 20   # e.g., change as needed
+    width = 20  # e.g., change as needed
     height = 40  # e.g., change as needed
 
     # Apply BoxBlurFilter
@@ -77,6 +86,7 @@ def test_blur():
     # output_path = "blurred_output.png"
     # result.save(output_path)
     # print(f"Blurred image saved to {output_path}")
+
 
 if __name__ == "__main__":
     # unittest.main()
