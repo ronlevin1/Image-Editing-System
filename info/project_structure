@@ -1,0 +1,21 @@
+image_editor/
+├── __init__.py
+├── cli/
+│   ├── __init__.py
+│   └── main.py           # Entry point, CLI handling
+├── core/
+│   ├── __init__.py
+│   ├── image_data.py     # Core ImageData class
+│   ├── config.py         # Configuration loading and validation
+│   └── utils.py          # Convolution engine and helper functions
+├── operations/
+│   ├── __init__.py
+│   ├── operation.py      # Abstract Operation interface
+│   ├── filter_decorator.py
+│   └── factory.py
+├── filters/
+│   ├── __init__.py
+│   └── ...
+└── adjustments/
+    ├── __init__.py
+    └── ...
