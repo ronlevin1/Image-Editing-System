@@ -1,7 +1,7 @@
-import numpy as np
-
-from core.image_data import ImageData
+# from operations.base.operation import Operation
 from operations.base.filter_decorator import FilterDecorator
+import numpy as np
+from core.image_data import ImageData
 
 """
 BrightnessAdjustment: scales pixel values to adjust brightness.

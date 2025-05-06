@@ -1,11 +1,11 @@
 from operations.adjustments.brightness_adjustment import BrightnessAdjustment
 from core.image_data import ImageData
-from operations.filters import BoxBlurFilter
+from operations.filters.box_blur_filter import BoxBlurFilter
 
 
 def test_brightness():
     # Insert your image path here
-    image_path = "/imgs/mona_lisa.jpg"
+    image_path = "/Users/ronlevin/PycharmProjects/Lightricks_HA/tests/imgs/mona_lisa.jpg"
 
     # Load image
     for factor in [0.1, 0.5, 1, 2, 3]:
@@ -25,7 +25,7 @@ def test_brightness():
 
 def test_adj_w_blur_chain():
     # Insert your image path here
-    image_path = "/imgs/mona_lisa.jpg"
+    image_path = "/Users/ronlevin/PycharmProjects/Lightricks_HA/tests/imgs/mona_lisa.jpg"
 
     # Configure box blur dimensions
     width = 25  # e.g., change as needed

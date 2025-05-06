@@ -5,15 +5,6 @@ Implements the Simple Factory design pattern.
 from typing import Dict, Any
 from operations.base.operation import Operation
 
-# TODO: fix all imports all over project
-from operations.filters import BoxBlurFilter
-# from filters.sobel import SobelFilter
-# from filters.sharpen import SharpenFilter
-
-from operations.adjustments.brightness_adjustment import BrightnessAdjustment
-# from adjustments.contrast import ContrastAdjustment
-# from adjustments.saturation import SaturationAdjustment
-
 
 class OperationFactory:
     """
@@ -41,6 +32,16 @@ class OperationFactory:
         Raises:
             ValueError: If operation type is unknown or parameters are invalid
         """
+        # TODO: fix all imports all over project
+        from operations.filters.box_blur_filter import BoxBlurFilter
+        # from filters.sobel import SobelFilter
+        # from filters.sharpen import SharpenFilter
+
+        from operations.adjustments.brightness_adjustment import \
+            BrightnessAdjustment
+        # from adjustments.contrast import ContrastAdjustment
+        # from adjustments.saturation import SaturationAdjustment
+
         if 'type' not in operation_config:
             raise ValueError("Operation config must include 'type' field")
 

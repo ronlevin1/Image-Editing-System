@@ -1,0 +1,10 @@
+{
+  "input": "imgs/mona_lisa.jpg",
+  "output": "imgs/output3.png",
+  "operations": [
+    {
+      "type": "brightness",
+      "factor": 0.5
+    }
+  ]
+}

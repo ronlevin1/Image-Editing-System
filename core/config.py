@@ -1,5 +1,4 @@
 import json
-from operations.operation_factory import OperationFactory
 
 
 class Config:

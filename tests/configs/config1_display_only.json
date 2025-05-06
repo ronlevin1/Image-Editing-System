@@ -1,0 +1,10 @@
+{
+  "input": "imgs/mona_lisa.jpg",
+  "display": true,
+  "operations": [
+    {
+      "type": "brightness",
+      "factor": 1.5
+    }
+  ]
+}

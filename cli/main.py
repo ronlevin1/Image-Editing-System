@@ -9,8 +9,24 @@ from core.pipeline import OperationPipeline
 from core.image_data import ImageData
 
 
-
 def main():
+    """
+        Main function for the image processing CLI.
+
+        Process:
+        1. Parse command line arguments to get the config file path.
+        2. Create a Config object that handles loading and validation.
+        3. Create the operation pipeline using OperationPipeline.create_from_config().
+        4. Load the image, apply the pipeline, and handle output/display.
+
+        Returns:
+            None
+
+        Raises:
+            FileNotFoundError: If the config file or input image cannot be found.
+            json.JSONDecodeError: If the config file contains invalid JSON.
+            ValueError: If the configuration is invalid.
+        """
     parser = argparse.ArgumentParser(description='Image Editing Tool')
     parser.add_argument('--config', required=True,
                         help='Path to configuration JSON file')
@@ -19,12 +35,9 @@ def main():
     try:
         # Create config object which loads, validates and prepares operations
         config = Config(args.config)
-        operation_pipeline = OperationPipeline.create_from_config(config.operations_config)
-
-        # Load the input image
+        operation_pipeline = OperationPipeline.create_from_config(
+            config.operations_config)
         image = ImageData.load(config.input_path)
-
-        # Apply the operation pipeline
         processed_image = operation_pipeline.apply(image)
 
         # Print each operation configuration
@@ -34,16 +47,12 @@ def main():
 
         # Handle output based on configuration
         if config.output_path:
-            Image.fromarray(processed_image).save(config.output_path)
+            processed_image.save(config.output_path)
             print(f"Image saved to {config.output_path}")
 
         # Handle display option
         if config.display:
-            plt.figure()  # figsize=(10, 10)
-            plt.imshow(processed_image)
-            plt.axis('off')
-            plt.title("Processed Image")
-            plt.show()
+            processed_image.show()
 
     except (FileNotFoundError, json.JSONDecodeError, ValueError) as e:
         print(f"Error: {e}")
@@ -51,4 +60,8 @@ def main():
 
 
 if __name__ == "__main__":
+    print(
+        "NOTE: if running a test on a series of images, with config 'display':true,"
+        " make sure to close the output images window after each one. "
+        "otherwise the execution will halt.")
     main()

@@ -3,7 +3,7 @@ from abc import abstractmethod
 from typing import Any
 
 from .operation import Operation
-from core.config import ImageData
+from core.image_data import ImageData
 
 
 class FilterDecorator(Operation):

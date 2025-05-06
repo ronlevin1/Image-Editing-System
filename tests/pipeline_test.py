@@ -3,6 +3,7 @@ import sys
 import os
 from pathlib import Path
 
+
 def run_config_test(config_path, description):
     """Run the image editing tool with the specified config file."""
     print(f"\n{'=' * 60}")
@@ -37,14 +38,12 @@ def run_config_test(config_path, description):
     print(f"Exit code: {result.returncode}")
     return result.returncode == 0
 
+
 def main():
     """Run tests on different config files to demonstrate operation order effects."""
     # Define the config file paths - use paths relative to the test file
     config1_path = "configs/config1.json"
     config2_path = "configs/config2.json"
-
-    # We'll skip the failing test for simplicity
-    # config_fail_path = "config2_fail.json"
 
     # Check if config files exist
     test_dir = Path(__file__).parent
@@ -54,8 +53,10 @@ def main():
             return 1
 
     # Run each test
-    success1 = run_config_test(config1_path, "Box blur first, then brightness adjustment")
-    success2 = run_config_test(config2_path, "Brightness adjustment first, then box blur")
+    success1 = run_config_test(config1_path,
+                               "Box blur first, then brightness adjustment")
+    success2 = run_config_test(config2_path,
+                               "Brightness adjustment first, then box blur")
 
     # Summary
     print("\n" + "=" * 60)
@@ -66,7 +67,41 @@ def main():
 
     if success1 and success2:
         print("\nAll tests completed successfully!")
-        print("Note: The output images likely look different due to the different operation order.")
+        print(
+            "Note: The output images likely look different due to the different operation order.")
+    return None
+
+
+def test_output_param():
+    # Define the config file paths - use paths relative to the test file
+    config1_path = "configs/config1_display_only.json"
+    config2_path = "configs/config1_out_only.json"
+    config_fail_path = "configs/config2_fail.json"
+
+    # Check if config files exist
+    test_dir = Path(__file__).parent
+    for path in [config1_path, config2_path]:
+        if not (test_dir / path).exists():
+            print(f"Error: Config file {path} not found in {test_dir}!")
+            return 1
+
+    # Run each test
+    success1 = run_config_test(config1_path,
+                               "Display only")
+    success2 = run_config_test(config2_path,
+                               "Output path only")
+    success3 = run_config_test(config_fail_path, "None of them , should fail")
+
+    # Summary
+    print("\n" + "=" * 60)
+    print("TEST SUMMARY")
+    print("=" * 60)
+    print(f"Config 1: {'PASS' if success1 else 'FAIL'}")
+    print(f"Config 2: {'PASS' if success2 else 'FAIL'}")
+    print(f"Config 3: {'PASS' if success2 else 'FAIL'}")
+    return None
+
 
 if __name__ == "__main__":
-    main()
+    # main()
+    test_output_param()

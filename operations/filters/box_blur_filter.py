@@ -4,7 +4,6 @@ from core.convolver import Convolver
 from core.image_data import ImageData
 from operations.base.filter_decorator import FilterDecorator
 
-
 class BoxBlurFilter(FilterDecorator):
     """
     Concrete decorator for box blur filter using the Decorator pattern.

@@ -2,13 +2,6 @@ from PIL import Image
 import numpy as np
 import matplotlib.pyplot as plt
 
-"""
-ImageData: loading, saving, and displaying images.
-
-Prompts that influenced this implementation:
-  • “implement ImageData class to provide the functionality needed for this project”  
-"""
-
 
 class ImageData:
     """
@@ -16,8 +9,19 @@ class ImageData:
     Provides load, save, and show functionality.
     """
 
-    def __init__(self, image_array: np.ndarray):
-        self.image = image_array
+    def __init__(self, image_data):
+        """
+        Initialize with either a PIL Image or numpy array.
+
+        Args:
+            image_data: Either a PIL Image or numpy array
+        """
+        if isinstance(image_data, np.ndarray):
+            self.image = image_data
+        elif isinstance(image_data, Image.Image):
+            self.image = np.array(image_data)
+        else:
+            raise TypeError(f"Expected PIL Image or numpy ndarray, got {type(image_data)}")
 
     @staticmethod
     def load(path: str) -> 'ImageData':
@@ -25,7 +29,7 @@ class ImageData:
         Load an image from a file and return an ImageData instance.
         """
         img = Image.open(path).convert('RGB')
-        return ImageData(np.array(img))
+        return ImageData(img)
 
     def save(self, path: str):
         """
@@ -38,6 +42,15 @@ class ImageData:
         """
         Display the image using matplotlib.
         """
+        # plt.figure()
+        # plt.imshow(self.image)
+        # plt.axis('off')
+        # plt.tight_layout()
+        #
+        # # Use block=False to prevent blocking
+        # plt.show(block=False)
+        # # Add pause to ensure figure renders
+        # plt.pause(0.1)
         plt.imshow(self.image)
         plt.axis('off')
         plt.show()
@@ -47,5 +60,3 @@ class ImageData:
         Return the internal NumPy array.
         """
         return self.image
-
-# TODO: maybe add more functionality
