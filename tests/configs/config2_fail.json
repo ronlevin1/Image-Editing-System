@@ -1,0 +1,15 @@
+{
+  "input": "imgs/mona_lisa.jpg",
+  "display": false,
+  "operations": [
+    {
+      "type": "brightness",
+      "factor": 1.5
+    },
+    {
+      "type": "box",
+      "width": 20,
+      "height": 20
+    }
+  ]
+}

@@ -3,6 +3,7 @@ from abc import abstractmethod
 from typing import Any
 
 from .operation import Operation
+from core.config import ImageData
 
 
 class FilterDecorator(Operation):
@@ -49,7 +50,7 @@ class FilterDecorator(Operation):
             return self._next_filter.apply(processed_img)
 
     @abstractmethod
-    def _apply_filter(self, image_data: Any) -> Any:
+    def _apply_filter(self, image_data: ImageData) -> Any:
         """
         Abstract method to be implemented by concrete filters.
 

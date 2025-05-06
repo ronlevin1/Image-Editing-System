@@ -9,14 +9,24 @@ image_editor/
 │   ├── config.py         # Configuration loading and validation
 │   ├── convolver.py      # Convolution engine
 │   └── utils.py          # helper functions
-├── operations/
-│   ├── __init__.py
-│   ├── operation.py      # Abstract Operation interface
-│   ├── filter_decorator.py
-│   └── factory.py
-├── filters/
-│   ├── __init__.py
+├──operations/
+│    ├── __init__.py
+│    ├── base/
+│    │   ├── operation.py      # Abstract Operation interface
+│    │   └── filter_decorator.py
+│    ├── filters/
+│    │   ├── box_blur_filter.py
+│    │   └── ...
+│    ├── adjustments/
+│    │   ├── brightness_adjustment.py
+│    │   └── ...
+│    └── operation_factory.py
+├── tests/
+│   ├── imgs/
+│   │    ├── mona_lisa.jpg
+│   │    └── ...
+│   ├── config1.json
+│   ├── ...
+│   ├── pipeline_test.py
 │   └── ...
-└── adjustments/
-    ├── __init__.py
-    └── ...
+└── ...

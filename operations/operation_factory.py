@@ -3,17 +3,16 @@ Factory for creating operation objects from configuration.
 Implements the Simple Factory design pattern.
 """
 from typing import Dict, Any
-from .operation import Operation
+from operations.base.operation import Operation
 
-# TODO
-from ..filters.box_blur_filter import BoxBlurFilter
-# from ..filters.sobel import SobelFilter
-# from ..filters.sharpen import SharpenFilter
-from ..adjustments.brightness_adjustment import BrightnessAdjustment
+# TODO: fix all imports all over project
+from operations.filters import BoxBlurFilter
+# from filters.sobel import SobelFilter
+# from filters.sharpen import SharpenFilter
 
-
-# from ..adjustments.contrast import ContrastAdjustment
-# from ..adjustments.saturation import SaturationAdjustment
+from operations.adjustments.brightness_adjustment import BrightnessAdjustment
+# from adjustments.contrast import ContrastAdjustment
+# from adjustments.saturation import SaturationAdjustment
 
 
 class OperationFactory:

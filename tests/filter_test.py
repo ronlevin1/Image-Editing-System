@@ -1,10 +1,7 @@
-import unittest
-
-import numpy as np
 from core.image_data import ImageData
-from operations.filter_decorator import FilterDecorator
-from filters.box_blur_filter import BoxBlurFilter
-from operations.operation import Operation
+from operations.base.filter_decorator import FilterDecorator
+from operations.filters import BoxBlurFilter
+from operations.base.operation import Operation
 
 """
 NoOpFilter: passes image through unchanged.
@@ -66,7 +63,7 @@ class DummyFilter(FilterDecorator):
 
 def test_blur():
     # Insert your image path here
-    image_path = "/Users/ronlevin/PycharmProjects/Lightricks_HA/tests/mona_lisa.jpg"
+    image_path = "/imgs/mona_lisa.jpg"
 
     # Load image
     img = ImageData.load(image_path)

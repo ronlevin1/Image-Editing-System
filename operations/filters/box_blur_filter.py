@@ -2,7 +2,7 @@ import numpy as np
 
 from core.convolver import Convolver
 from core.image_data import ImageData
-from operations.filter_decorator import FilterDecorator
+from operations.base.filter_decorator import FilterDecorator
 
 
 class BoxBlurFilter(FilterDecorator):
