@@ -21,6 +21,15 @@ class FilterDecorator(Operation):
         super().__init__()
         self._next_filter = next_filter
 
+    def set_next_filter(self, next_filter: Operation) -> None:
+        """
+        Sets the next filter in the chain.
+
+        Args:
+            next_filter: The operation to be called after this one
+        """
+        self._next_filter = next_filter
+
     def apply(self, image_data: Any) -> Any:
         """
         Template method pattern: calls internal _apply_filter,

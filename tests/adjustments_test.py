@@ -1,6 +1,6 @@
 import numpy as np
 
-from adjustments.brightness_adjustment import BrightnessFilter
+from adjustments.brightness_adjustment import BrightnessAdjustment
 from core.image_data import ImageData
 from operations.filter_decorator import FilterDecorator
 from filters.box_blur_filter import BoxBlurFilter
@@ -13,7 +13,7 @@ def test_brightness():
 
     # Load image
     for factor in [0.1, 0.5, 1, 2, 3]:
-        brightness_adj = BrightnessFilter(factor)
+        brightness_adj = BrightnessAdjustment(factor)
         img = ImageData.load(image_path)
         result = brightness_adj.apply(img)
         result.show()
@@ -39,7 +39,7 @@ def test_adj_w_blur_chain():
     # Load image
     img = ImageData.load(image_path)
     blur = BoxBlurFilter(width, height)
-    chain = BrightnessFilter(factor, next_filter=blur)
+    chain = BrightnessAdjustment(factor, next_filter=blur)
 
     result = chain.apply(img)
     result.show()

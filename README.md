@@ -5,7 +5,7 @@ An image processing program, given as home assignment.
 Additional prompts I used, discussing generally about the project:
 
 1. 
-   * attached instructions file)
+   * (attached instructions file)
    * Prompt: "read the file. suggest a program structure for the description
      in it. dont give code, structure and design only. in your answer, explain
      the design you chose and the category of each component. i.e, i was

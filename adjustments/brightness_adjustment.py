@@ -4,7 +4,7 @@ from core.image_data import ImageData
 from operations.filter_decorator import FilterDecorator
 
 """
-BrightnessFilter: scales pixel values to adjust brightness.
+BrightnessAdjustment: scales pixel values to adjust brightness.
 
 Prompts that influenced this implementation:
   • “lets implement the brightness adjustment…”  
@@ -14,7 +14,7 @@ Prompts that influenced this implementation:
 """
 
 
-class BrightnessFilter(FilterDecorator):
+class BrightnessAdjustment(FilterDecorator):
     """
     Adjusts image brightness by scaling pixel values.
 
