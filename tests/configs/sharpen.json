@@ -1,0 +1,11 @@
+{
+  "input": "/Users/ronlevin/PycharmProjects/Lightricks_HA/tests/imgs/sharpen2.png",
+  "output": "/Users/ronlevin/PycharmProjects/Lightricks_HA/tests/imgs/sharpen_output2.jpg",
+  "display": true,
+  "operations": [
+    {
+      "type": "sharpen",
+      "amount": 3.0
+    }
+  ]
+}

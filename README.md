@@ -21,7 +21,7 @@ Additional prompts I used, discussing generally about the project:
      extension. this was an example so far, but if it is a good idea, consider
      it yourself. again - focus now on structure and design of program and its
      components only.
-2.
+2. 
     * Prompt: "What are the pros and cons of using the Decorator pattern versus
       the Strategy pattern in this context?"
     * Response Summary: #TODO
@@ -29,25 +29,28 @@ Additional prompts I used, discussing generally about the project:
       are priorities.
       Use the Strategy Pattern if simplicity, decoupling, and ease of debugging
       are more important.
-3.
+3. 
     * Prompt: "suggest the project structure in the means of seperation to
       packages, files, etc. no code for now."
     * "this project seems large and complex. can you simplify it by reducing
       number of files, or something else? i dont have much time to work on it"
-4.
+4. 
     * Prompt: "lets implemt the decorator design pattern. provide code too in
       this step. one file by another"
     * "i want to let you know that im not familiar with OOP syntax in python. i
       learned OOP in java. is it possible to modify the code structure to match
       that one of java? in the means of logic, structure, etc"
     * "im not familiar with registry pattern. modify it to be simple factory"
-3.
+5. 
     * (After beginning with implementing the Decorator pattern)
     * Prompt: "i dont fully understand what were doing. do you think we should
       implement the rest of the project top-down or bottom-up?"
     * Response Summary: Recommended bottom-up approach with implementation
       order starting with ImageData class, then filters, adjustments, factory,
       pipeline, and CLI.
+
+6. * To test the different filter, i asked Perplexity to find a good image 
+   * suitable for each filter.
 
 #TODO next:
 
