@@ -1,0 +1,31 @@
+{
+  "input": "/Users/ronlevin/PycharmProjects/Lightricks_HA/tests/imgs/mona_lisa.jpg",
+  "output": "/Users/ronlevin/PycharmProjects/Lightricks_HA/tests/imgs/chain_all_ops_output.png",
+  "display": true,
+  "operations": [
+    {
+      "type": "brightness",
+      "value": 1.2
+    },
+    {
+      "type": "box",
+      "width": 5,
+      "height": 5
+    },
+    {
+      "type": "contrast",
+      "value": 1.1
+    },
+    {
+      "type": "sharpen",
+      "amount": 2.0
+    },
+    {
+      "type": "saturation",
+      "value": 2.0
+    },
+    {
+      "type": "sobel"
+    }
+  ]
+}

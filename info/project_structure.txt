@@ -1,16 +1,16 @@
-image_editor/
+Lightricks_HA/
 ├── __init__.py
-├── cli/
-│   ├── __init__.py
-│   └── main.py           # Entry point, CLI handling
+├── edit-image.py      # Main entry point for the image editor
 ├── core/
 │   ├── __init__.py
 │   ├── image_data.py     # Core ImageData class
 │   ├── config.py         # Configuration loading and validation
 │   ├── convolver.py      # Convolution engine
-│   └── utils.py          # helper functions
+│   └── pipeline.py       # Chains operations together
+├── info/
+│   ├── ex_description.txt
+│   └── project_structure.txt   # You're here
 ├──operations/
-│    ├── __init__.py
 │    ├── base/
 │    │   ├── operation.py      # Abstract Operation interface
 │    │   └── filter_decorator.py
@@ -20,13 +20,15 @@ image_editor/
 │    ├── adjustments/
 │    │   ├── brightness_adjustment.py
 │    │   └── ...
+│    ├── __init__.py
 │    └── operation_factory.py
 ├── tests/
 │   ├── imgs/
 │   │    ├── mona_lisa.jpg
 │   │    └── ...
-│   ├── config1.json
-│   ├── ...
+│   ├── configs/
+│   │   ├── chain1.json
+│   │   └── ...
 │   ├── pipeline_test.py
 │   └── ...
 └── ...

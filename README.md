@@ -1,12 +1,20 @@
 # Lightricks_HA
+author:  Ron Levin, May 2025.
 
 An image processing program, given as home assignment by Lightricks.
+
 * To run this program, you need to have Python 3.8 or higher installed.
 * You should be able to run the tool from the command line using the following 
 structure "./edit-image --config path_to_config.json".
 * (Remember to be in the directory where the program is located)
 * NOTICE: you have to use './' in the command: "./edit-image ...". 
 * Alternativly, run it with "python3 edit-image.py ...".
+
+For project structure, see the "info" directory.
+
+NOTE: Sharpen filter doesnt work well, it produces artifacts.
+
+-------------------------------------------------------------------------------
 
 Additional prompts I used, discussing generally about the project:
 
@@ -51,31 +59,3 @@ Additional prompts I used, discussing generally about the project:
 
 6. * To test the different filter, i asked Perplexity to find a good image 
    * suitable for each filter.
-
-#TODO next:
-
-3. Complete other filters and adjustments
-   Implement the rest of the filters (e.g. sharpen, contrast, etc.) and
-   adjustments (e.g. brightness, gamma).
-
-   Ensure they are chainable and work with the pipeline builder.
-
-   Unit-test each filter and adjustment separately.
-
-4. Finish Factory
-
-   Implement the factory method to create the correct filter object based on
-   the descriptor.
-
-   Ensure it handles all filters and adjustments correctly.
-
-   Unit-test the factory method with various descriptors.
-
-5. Final Tests & Polish
-
-   End-to-end test with a sample JSON: load → apply 3 filters → save/display.
-
-   Add error handling (invalid kernel sizes, missing ﬁles).
-
-   Clean up: remove debug code, add docstrings, and prepare README.
-
