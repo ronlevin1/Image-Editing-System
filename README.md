@@ -1,6 +1,12 @@
 # Lightricks_HA
 
-An image processing program, given as home assignment.
+An image processing program, given as home assignment by Lightricks.
+* To run this program, you need to have Python 3.8 or higher installed.
+* You should be able to run the tool from the command line using the following 
+structure "./edit-image --config path_to_config.json".
+* (Remember to be in the directory where the program is located)
+* NOTICE: you have to use './' in the command: "./edit-image ...". 
+* Alternativly, run it with "python3 edit-image.py ...".
 
 Additional prompts I used, discussing generally about the project:
 
@@ -44,21 +50,6 @@ Additional prompts I used, discussing generally about the project:
       pipeline, and CLI.
 
 #TODO next:
-
-1. Pipeline Builder
-
-   Write a helper that takes a list of filter descriptors (e.g. ("box",5,5), ("
-   brightness",0.6)) and instantiates a single chained object.
-
-   Unit-test mapping from descriptor list → correct filter chain.
-
-2. CLI / Config Integration
-
-   Parse JSON config into a list of operation descriptors.
-
-   Use your pipeline builder to create the chain.
-
-   Load the image, run the chain, then save or show based on config flags.
 
 3. Complete other filters and adjustments
    Implement the rest of the filters (e.g. sharpen, contrast, etc.) and

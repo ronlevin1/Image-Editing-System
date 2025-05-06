@@ -1,9 +1,7 @@
+#!/usr/bin/env python3
 import argparse
 import json
 import sys
-import numpy as np
-from PIL import Image
-import matplotlib.pyplot as plt
 from core.config import Config
 from core.pipeline import OperationPipeline
 from core.image_data import ImageData
@@ -41,9 +39,9 @@ def main():
         processed_image = operation_pipeline.apply(image)
 
         # Print each operation configuration
-        print("Applied the following operations:")
+        print(">> Applied the following operations:")
         for i, operation in enumerate(config.operations_config):
-            print(f"{i + 1}. {operation}")
+            print(f"\t{i + 1}. {operation}")
 
         # Handle output based on configuration
         if config.output_path:
@@ -61,7 +59,7 @@ def main():
 
 if __name__ == "__main__":
     print(
-        "NOTE: if running a test on a series of images, with config 'display':true,"
-        " make sure to close the output images window after each one. "
-        "otherwise the execution will halt.")
+        "\n>> NOTE: if running a test on a series of images with config 'display':true,\n"
+        "\t make sure to close the output images window after each one.\n"
+        "\t Otherwise - the execution will halt.\n")
     main()
