@@ -58,8 +58,13 @@ def main():
 
 
 if __name__ == "__main__":
+    print("\n" + "=" * 60)
+    print("\tRUNNING, this might take a minute.")
+    print("" + "=" * 60)
     print(
         "\n>> NOTE: if running a test on a series of images with config 'display':true,\n"
         "\t make sure to close the output images window after each one.\n"
         "\t Otherwise - the execution will halt.\n")
     main()
+    print("\n" + "=" * 60)
+    print("\n>> Done.\n")

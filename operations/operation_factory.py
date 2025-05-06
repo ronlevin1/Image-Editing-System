@@ -34,7 +34,7 @@ class OperationFactory:
         """
         # TODO: fix all imports all over project
         from operations.filters.box_blur_filter import BoxBlurFilter
-        # from filters.sobel import SobelFilter
+        from operations.filters.sobel_filter import SobelFilter
         # from filters.sharpen import SharpenFilter
 
         from operations.adjustments.brightness_adjustment import \
@@ -59,8 +59,8 @@ class OperationFactory:
         # Determine which operation to create based on type
         if operation_type in ["box", "boxblur"]:
             return BoxBlurFilter(**parameters)
-        # elif operation_type == "sobel":
-        #     return SobelFilter(**parameters)
+        elif operation_type == "sobel":
+            return SobelFilter(**parameters)
         # elif operation_type == "sharpen":
         #     return SharpenFilter(**parameters)
         elif operation_type == "brightness":
@@ -89,15 +89,17 @@ class OperationFactory:
             "box": ["width", "height"],
             "boxblur": ["width", "height"],
             "brightness": ["factor"],
-            # Add more as you implement them
+            "sobel": []
         }
+            # TODO: Add more as you implement them
 
         # Define parameter types for validation
         param_types = {
             "box": {"width": int, "height": int},
             "boxblur": {"width": int, "height": int},
             "brightness": {"factor": float},
-            # Add more as you implement them
+            "sobel": {}
+            # TODO: Add more as you implement them
         }
 
         # Validate parameters
