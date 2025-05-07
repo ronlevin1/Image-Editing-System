@@ -1,22 +1,61 @@
-# Lightricks_HA
-author:  Ron Levin, May 2025.
+# Lightricks Image Processor
+###### author:  Ron Levin, May 2025.
 
-An image processing program, given as home assignment by Lightricks.
+A command-line image processing tool that allows applying various filters and 
+adjustments to images through configuration files.
 
-* To run this program, you need to have Python 3.8 or higher installed.
-* You should be able to run the tool from the command line using the following 
-structure "./edit-image --config path_to_config.json".
-* (Remember to be in the directory where the program is located)
-* NOTICE: you have to use './' in the command: "./edit-image ...". 
-* Alternativly, run it with "python3 edit-image.py ...".
+## Features
+- Apply multiple image operations in sequence
+- Supported operations:
+  - Filters: Box blur, Sobel, Sharpen
+  - Adjustments: Brightness, Contrast, Saturation
+- Save/display processed images or interactively
 
-For project structure, see the "info" directory.
+## Requirements
+- Python 3.8+
+- Required packages: NumPy, Pillow, matplotlib
 
-NOTE: Sharpen filter doesnt work well, it produces artifacts.
+## Usage
+- Run the tool from the command line with the following structure:
+  - ./edit-image.py --config path_to_config.json
+- Or alternatively:
+  - python3 edit-image.py --config path_to_config.json 
+
+## Configuration
+- Template example for configuration file:
+  - See filter files for specific parameter names.
+```json
+{
+  'input': 'string (required, path to input image)',
+  'output': 'string (optional, path to save output image)',
+  'display': "<True>, or <False>, depending on the actual boolean value"
+  'operations': [
+    {
+      'type': 'string (required)',
+      '<parameter_key>': '<parameter_value>'
+    }
+  ]
+}
+```
+
+## Known Issues
+- The sharpen filter may produce artifacts in some cases.
+
+## Project Structure
+- See the info/project_structure.txt file for details on the codebase organization.
+
 
 -------------------------------------------------------------------------------
 
-Additional prompts I used, discussing generally about the project:
+## LLMs
+- I used the following LLMs to assist me in the project:
+  - GitHub Copilot (mainly with Claude 3.7 sonnet Thinking)
+  - ChatGPT (o4-mini Reasoning model)
+  - Perplexity AI
+  
+### Prompts used
+- These are prompts I used additionally to those specified in the code
+- Topic - discussing generally about the project
 
 1. 
    * (attached instructions file)

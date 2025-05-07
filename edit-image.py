@@ -6,6 +6,10 @@ from core.config import Config
 from core.pipeline import OperationPipeline
 from core.image_data import ImageData
 
+"""
+This is the main file.
+"""
+
 
 def main():
     """

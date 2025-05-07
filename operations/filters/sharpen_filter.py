@@ -17,6 +17,30 @@ class SharpenFilter(FilterDecorator):
     """
     RADIUS = 2  # constant radius as per requirements
 
+    #
+    # def __init__(self, amount: float, next_filter=None):
+    #     super().__init__(next_filter)
+    #     if amount < 0:
+    #         raise ValueError("Sharpen amount must be non-negative")
+    #     self.amount = amount
+    #     # box kernel of size (2*radius+1)=5
+    #     size = 2 * 2 + 1
+    #     self.kernel = np.ones((size, size), dtype=float) / (size * size)
+    #
+    # def _apply_filter(self, image_data: ImageData) -> ImageData:
+    #     # work in float to preserve precision
+    #     orig = image_data.get_array().astype(float)
+    #     # blurred version
+    #     blurred = Convolver.apply_kernel(orig, self.kernel)
+    #     # unsharp mask
+    #     mask = orig - blurred
+    #     # add scaled mask back
+    #     sharpened = orig + self.amount * mask
+    #     # clip and convert back to uint8
+    #     np.clip(sharpened, 0, 255, out=sharpened)
+    #     image_data.image = sharpened.astype(np.uint8)
+    #     return image_data
+
     def __init__(self, amount: float, next_filter=None):
         """
         Initialize the sharpen filter with specified parameters.
@@ -38,30 +62,11 @@ class SharpenFilter(FilterDecorator):
             print(
                 "Warning: High sharpening amounts (>5.0) may cause artifacts")
 
-        self.amount = amount * 0.1  # Scale down the amount for better control
-        self.radius = self.RADIUS
-
-        # Create a blur kernel for the unsharp mask
-        self.blur_kernel = self._create_blur_kernel()
-
-    def _create_blur_kernel(self):
-        """
-        Create a blur kernel for the unsharp mask.
-
-        Returns:
-            A 5x5 kernel approximating a Gaussian blur with radius=2
-        """
-        # This is a simple approximation of a Gaussian kernel
-        kernel = np.array([
-            [1, 4, 6, 4, 1],
-            [4, 16, 24, 16, 4],
-            [6, 24, 36, 24, 6],
-            [4, 16, 24, 16, 4],
-            [1, 4, 6, 4, 1]
-        ], dtype=float)
-
-        # Normalize the kernel so it sums to 1
-        return kernel / np.sum(kernel)
+        # self.amount = amount * 0.1  # can scale down the amount for better control
+        self.amount = amount
+        # box kernel of size (2*radius+1)=5
+        size = self.RADIUS * self.RADIUS + 1
+        self.kernel = np.ones((size, size), dtype=float) / (size * size)
 
     def _apply_filter(self, image_data: ImageData) -> ImageData:
         """
@@ -73,22 +78,18 @@ class SharpenFilter(FilterDecorator):
         Returns:
             The processed image data with sharpening applied
         """
-        # Extract raw array
-        original = image_data.get_array()
+        # work in float to preserve precision
+        original = image_data.get_array().astype(float)
+        blurred = Convolver.apply_kernel(original, self.kernel)
 
-        # Apply blur to create the mask
-        blurred = Convolver.apply_kernel(original, self.blur_kernel)
-
-        # Calculate the unsharp mask (original - blurred)
+        # unsharp mask
         mask = original - blurred
 
-        # Apply the mask to the original image with scaling factor
+        # add scaled mask back
         sharpened = original + self.amount * mask
 
-        # Clip values to valid range [0, 255]
-        sharpened = np.clip(sharpened, 0, 255).astype(np.uint8)
+        # clip and convert back to uint8
+        np.clip(sharpened, 0, 255, out=sharpened)
+        image_data.image = sharpened.astype(np.uint8)
 
-        # Update image data and return
-        image_data.image = sharpened
         return image_data
-
