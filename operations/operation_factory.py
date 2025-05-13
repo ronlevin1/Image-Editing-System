@@ -35,7 +35,6 @@ class OperationFactory:
         from operations.filters.box_blur_filter import BoxBlurFilter
         from operations.filters.sobel_filter import SobelFilter
         from operations.filters.sharpen_filter import SharpenFilter
-
         from operations.adjustments.brightness_adjustment import \
             BrightnessAdjustment
         from operations.adjustments.contrast_adjustment import \
@@ -169,52 +168,3 @@ class OperationFactory:
                     raise ValueError(
                         f"Parameter '{param}' for {operation_type} "
                         f"must be a {expected_type.__name__}")
-
-    # @staticmethod
-    # def _validate_parameters(extracted_parameters: Dict[str, Any],
-    #                          operation_type: str) -> None:
-    #     """
-    #     Validate the parameters for the operation.
-    #
-    #     Args:
-    #         extracted_parameters: Dictionary of parameters to validate
-    #
-    #     Raises:
-    #         ValueError: If any parameter is invalid
-    #     """
-    #     # Define required parameters for each operation type
-    #     required_params = {
-    #         "box": ["width", "height"],
-    #         "brightness": ["factor"],
-    #         "sobel": [],
-    #         "sharpen": ["amount"],
-    #         "contrast": ["factor"],
-    #         "saturation": ["factor"],
-    #     }
-    #
-    #     # Define parameter types for validation
-    #     param_types = {
-    #         "box": {"width": int, "height": int},
-    #         "brightness": {"factor": float},
-    #         "sobel": {},
-    #         "sharpen": {"amount": float},
-    #         "contrast": {"factor": float},
-    #         "saturation": {"factor": float},
-    #     }
-    #
-    #     # Validate parameters
-    #     if operation_type in required_params:
-    #         # Check if all required parameters are present
-    #         for param in required_params[operation_type]:
-    #             if param not in extracted_parameters:
-    #                 raise ValueError(
-    #                     f"Missing required parameter '{param}' for {operation_type}")
-    #
-    #     # Check parameter types
-    #     if operation_type in param_types:
-    #         for param, expected_type in param_types[operation_type].items():
-    #             if param in extracted_parameters and not isinstance(
-    #                     extracted_parameters[param], expected_type):
-    #                 raise ValueError(
-    #                     f"Parameter '{param}' for {operation_type} "
-    #                     f"must be a {expected_type.__name__}")

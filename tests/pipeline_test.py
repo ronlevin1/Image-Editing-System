@@ -13,7 +13,7 @@ def run_config_test(config_path, description):
 
     # Find the project root directory (parent of tests directory)
     project_root = Path(__file__).parent.parent
-    main_path = project_root / "edit-image.py"
+    main_path = project_root / "main.py"
 
     # Make sure we use the full path to the config file
     config_full_path = Path(__file__).parent / config_path

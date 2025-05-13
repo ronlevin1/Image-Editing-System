@@ -46,8 +46,7 @@ class ContrastAdjustment(FilterDecorator):
         # Apply contrast adjustment
         # Formula: (pixel - midpoint) * contrast_factor + midpoint
         midpoint = 127.5  # = 255 / 2
-        adjusted = (image.astype(
-            float) - midpoint) * contrast_factor + midpoint
+        adjusted = (image.astype(float) - midpoint) * contrast_factor + midpoint
 
         # Clip to valid range and convert back to uint8
         adjusted = np.clip(adjusted, 0, 255).astype(np.uint8)

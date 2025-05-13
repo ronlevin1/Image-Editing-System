@@ -1,0 +1,6 @@
+{
+  "input": "/Users/ronlevin/PycharmProjects/Lightricks_HA/tests/imgs/mona_lisa.jpg",
+  "output": "/Users/ronlevin/PycharmProjects/Lightricks_HA/tests/imgs/nonono_output.png",
+  "display": true,
+  "operations": []
+}

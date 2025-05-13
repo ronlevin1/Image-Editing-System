@@ -42,15 +42,6 @@ class ImageData:
         """
         Display the image using matplotlib.
         """
-        # plt.figure()
-        # plt.imshow(self.image)
-        # plt.axis('off')
-        # plt.tight_layout()
-        #
-        # # Use block=False to prevent blocking
-        # plt.show(block=False)
-        # # Add pause to ensure figure renders
-        # plt.pause(0.1)
         plt.imshow(self.image)
         plt.axis('off')
         plt.show()
