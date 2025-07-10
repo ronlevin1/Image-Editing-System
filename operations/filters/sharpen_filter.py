@@ -17,29 +17,29 @@ class SharpenFilter(FilterDecorator):
     """
     RADIUS = 2  # constant radius as per requirements
 
-    def __init__(self, amount: float, wrapped_operation=None):
+    def __init__(self, value: float, wrapped_operation=None):
         """
         Initialize the sharpen filter with specified parameters.
 
         Args:
-            amount: The amount of sharpening to apply (scaling factor for edges)
+            value: The amount of sharpening to apply (scaling factor for edges)
                 Recommended range: 0.0 to 5.0.
             wrapped_operation: The operation to be wrapped
         """
         super().__init__(wrapped_operation)
 
-        # Validate amount parameter
-        if amount < 0:
+        # Validate value parameter
+        if value < 0:
             raise ValueError("Sharpening amount must be non-negative")
-        if amount > 10.0:
+        if value > 10.0:
             raise ValueError(
                 "Sharpening amount is too large (max recommended: 5.0)")
-        elif amount > 5.0:
+        elif value > 5.0:
             print(
                 "Warning: High sharpening amounts (>5.0) may cause artifacts")
 
         # self.amount = amount * 0.1  # can scale down the amount for better control
-        self.amount = amount
+        self.value = value
         # box kernel of size (2*radius+1)=5
         size = self.RADIUS * self.RADIUS + 1
         self.kernel = np.ones((size, size), dtype=float) / (size * size)
@@ -62,7 +62,7 @@ class SharpenFilter(FilterDecorator):
         mask = original - blurred
 
         # add scaled mask back
-        sharpened = original + self.amount * mask
+        sharpened = original + self.value * mask
 
         # clip and convert back to uint8
         np.clip(sharpened, 0, 255, out=sharpened)

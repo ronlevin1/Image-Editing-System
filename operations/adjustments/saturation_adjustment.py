@@ -11,24 +11,24 @@ class SaturationAdjustment(FilterDecorator):
     GREEN_WEIGHT = 0.587
     RED_WEIGHT = 0.299
 
-    def __init__(self, factor: float, wrapped_operation=None):
+    def __init__(self, value: float, wrapped_operation=None):
         """
         Initialize the saturation adjustment with specified parameters.
 
         Args:
-            factor: The factor to adjust saturation by.
-                   Range: 0.0 to 3.0 (0 = grayscale, 1 = no change, >1 increases saturation)
+            value: The factor to adjust saturation by.
+                   Range: -10.0 to 10.0 (negative decreases, positive increases saturation)
             wrapped_operation: The next filter in the chain (if any)
         """
         super().__init__(wrapped_operation)
 
         # Validate factor parameter
-        if factor < 0.0:
-            raise ValueError("Saturation factor must be non-negative")
-        if factor > 3.0:
-            raise ValueError("Saturation factor must be at most 3.0")
+        if value < 0.0:
+            raise ValueError("Saturation value must be non-negative")
+        if value > 3.0:
+            raise ValueError("Saturation value must be at most 3.0")
 
-        self.factor = factor
+        self.value = value
 
     def _apply_filter(self, image_data: ImageData) -> ImageData:
         """
@@ -54,7 +54,7 @@ class SaturationAdjustment(FilterDecorator):
             # factor = 0: fully grayscale
             # factor = 1: original image
             # factor > 1: increased saturation
-            adjusted = grayscale + self.factor * (img_float - grayscale)
+            adjusted = grayscale + self.value * (img_float - grayscale)
 
             # Convert back to uint8
             adjusted = np.clip(adjusted * 255.0, 0, 255).astype(np.uint8)

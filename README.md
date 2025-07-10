@@ -44,8 +44,8 @@ adjustments to images through configuration files.
 ## TODOs:
 1. fix base decorator order of apply() calls V
 2. factory:
-   - change to hashmap 
-   - clean up validation
+   - change to hashmap  V
+   - clean up validation V
 3. config:
    - pull input and operations validation to the config class
 4. filter classes:

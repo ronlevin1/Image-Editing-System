@@ -19,20 +19,20 @@ class BrightnessAdjustment(FilterDecorator):
     Adjusts image brightness by scaling pixel values.
 
     Args:
-        factor (float): Multiplicative brightness factor.
+        value (float): Multiplicative brightness factor.
             - 1.0 leaves image unchanged
             - <1.0 darkens the image
             - >1.0 brightens the image
         next_filter (Operation, optional): Next filter in chain
     Range:
-        factor must be > 0. Recommended range [0.0, 3.0].
+        value must be > 0. Recommended range [0.0, 3.0].
     """
 
-    def __init__(self, factor: float, wrapped_operation=None):
+    def __init__(self, value: float, wrapped_operation=None):
         super().__init__(wrapped_operation)
-        if factor <= 0:
-            raise ValueError("Brightness factor must be > 0")
-        self.factor = factor
+        if value <= 0:
+            raise ValueError("Brightness value must be > 0")
+        self.factor = value
 
     def _apply_filter(self, image_data: ImageData) -> ImageData:
         # Work on float copy to prevent overflow

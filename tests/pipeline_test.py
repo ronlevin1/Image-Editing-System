@@ -102,6 +102,24 @@ def test_output_param():
     return None
 
 
+def test_chain_all():
+    """Test chaining all operations."""
+    config_path = "configs/chain_all.json"
+    test_dir = Path(__file__).parent
+    if not (test_dir / config_path).exists():
+        print(f"Error: Config file {config_path} not found in {test_dir}!")
+        return 1
+
+    success = run_config_test(config_path, "Chain all operations")
+
+    print("\n" + "=" * 60)
+    print("TEST SUMMARY")
+    print("=" * 60)
+    print(f"Config 'chain_all.json': {'PASS' if success else 'FAIL'}")
+    return None
+
+
 if __name__ == "__main__":
-    main()
+    # main()
     # test_output_param()
+    test_chain_all()
