@@ -13,15 +13,13 @@ class OperationPipeline:
 
         # Create operation objects
         operations_chain = []
-        for op_config in operations_config:
+        for op_config in reversed(operations_config):
             current_config = op_config.copy()
-            current_config.pop('next_filter', None) # a defensive step,
-                                        # although this shouldn't happen
             current_operation = OperationFactory.create(current_config)
             operations_chain.append(current_operation)
 
         # Chain operations
         for i in range(len(operations_chain) - 1):
-            operations_chain[i].set_next_filter(operations_chain[i + 1])
+            operations_chain[i].set_wrapped_filter(operations_chain[i + 1])
 
         return operations_chain[0] if operations_chain else None

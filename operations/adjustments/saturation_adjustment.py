@@ -11,16 +11,16 @@ class SaturationAdjustment(FilterDecorator):
     GREEN_WEIGHT = 0.587
     RED_WEIGHT = 0.299
 
-    def __init__(self, factor: float, next_filter=None):
+    def __init__(self, factor: float, wrapped_operation=None):
         """
         Initialize the saturation adjustment with specified parameters.
 
         Args:
             factor: The factor to adjust saturation by.
                    Range: 0.0 to 3.0 (0 = grayscale, 1 = no change, >1 increases saturation)
-            next_filter: The next filter in the chain (if any)
+            wrapped_operation: The next filter in the chain (if any)
         """
-        super().__init__(next_filter)
+        super().__init__(wrapped_operation)
 
         # Validate factor parameter
         if factor < 0.0:

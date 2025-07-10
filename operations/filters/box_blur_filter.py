@@ -8,8 +8,8 @@ class BoxBlurFilter(FilterDecorator):
     """
     Concrete decorator for box blur filter using the Decorator pattern.
     """
-    def __init__(self, width: int, height: int, next_filter=None):
-        super().__init__(next_filter)
+    def __init__(self, width: int, height: int, wrapped_operation=None):
+        super().__init__(wrapped_operation)
         # self.width = width
         # self.height = height
         # accepted range

@@ -103,5 +103,5 @@ def test_output_param():
 
 
 if __name__ == "__main__":
-    # main()
-    test_output_param()
+    main()
+    # test_output_param()

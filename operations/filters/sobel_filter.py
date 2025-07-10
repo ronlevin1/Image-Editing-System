@@ -13,8 +13,8 @@ class SobelFilter(FilterDecorator):
     horizontal and vertical directions, then combines them to highlight edges.
     """
 
-    def __init__(self, next_filter=None):
-        super().__init__(next_filter)
+    def __init__(self, wrapped_operation=None):
+        super().__init__(wrapped_operation)
         # Sobel kernel for horizontal edges (x-direction)
         self.kernel_x = np.array([
             [-1, 0, 1],

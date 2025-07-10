@@ -42,7 +42,7 @@ adjustments to images through configuration files.
 - The sharpen filter may produce artifacts in some cases.
 
 ## TODOs:
-1. fix base decorator order of apply() calls
+1. fix base decorator order of apply() calls V
 2. factory:
    - change to hashmap 
    - clean up validation

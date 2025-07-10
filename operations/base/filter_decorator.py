@@ -12,29 +12,29 @@ class FilterDecorator(Operation):
     Similar to Java's Decorator pattern implementation.
     """
 
-    def __init__(self, next_filter: Operation = None):
+    def __init__(self, wrapped_filter: Operation = None):
         """
         Constructor for the FilterDecorator class.
 
         Args:
-            next_filter: The operation to be called after this one
+            wrapped_filter: The operation to be wrapped
         """
         super().__init__()
-        self._next_filter = next_filter
+        self._wrapped_filter = wrapped_filter
 
-    def set_next_filter(self, next_filter: Operation) -> None:
+    def set_wrapped_filter(self, wrapped_filter: Operation) -> None:
         """
-        Sets the next filter in the chain.
+        Sets the wrapped operation.
 
         Args:
-            next_filter: The operation to be called after this one
+            wrapped_filter: The operation to be wrapped
         """
-        self._next_filter = next_filter
+        self._wrapped_filter = wrapped_filter
 
     def apply(self, image_data: Any) -> Any:
         """
-        Template method pattern: calls internal _apply_filter,
-        then delegates to wrapped operation.
+        Template method pattern: delegates to wrapped operation,
+        then calls internal _apply_filter.
 
         Args:
             image_data: The image data to process
@@ -42,12 +42,11 @@ class FilterDecorator(Operation):
         Returns:
             The processed image data
         """
-        processed_img = self._apply_filter(image_data)
+        processed_img = image_data
+        if self._wrapped_filter:
+            processed_img = self._wrapped_filter.apply(image_data)
 
-        if self._next_filter is None:
-            return processed_img
-        else:
-            return self._next_filter.apply(processed_img)
+        return self._apply_filter(processed_img)
 
     @abstractmethod
     def _apply_filter(self, image_data: ImageData) -> Any:

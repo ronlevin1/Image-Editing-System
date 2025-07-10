@@ -28,8 +28,8 @@ class BrightnessAdjustment(FilterDecorator):
         factor must be > 0. Recommended range [0.0, 3.0].
     """
 
-    def __init__(self, factor: float, next_filter=None):
-        super().__init__(next_filter)
+    def __init__(self, factor: float, wrapped_operation=None):
+        super().__init__(wrapped_operation)
         if factor <= 0:
             raise ValueError("Brightness factor must be > 0")
         self.factor = factor

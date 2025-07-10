@@ -17,40 +17,16 @@ class SharpenFilter(FilterDecorator):
     """
     RADIUS = 2  # constant radius as per requirements
 
-    #
-    # def __init__(self, amount: float, next_filter=None):
-    #     super().__init__(next_filter)
-    #     if amount < 0:
-    #         raise ValueError("Sharpen amount must be non-negative")
-    #     self.amount = amount
-    #     # box kernel of size (2*radius+1)=5
-    #     size = 2 * 2 + 1
-    #     self.kernel = np.ones((size, size), dtype=float) / (size * size)
-    #
-    # def _apply_filter(self, image_data: ImageData) -> ImageData:
-    #     # work in float to preserve precision
-    #     orig = image_data.get_array().astype(float)
-    #     # blurred version
-    #     blurred = Convolver.apply_kernel(orig, self.kernel)
-    #     # unsharp mask
-    #     mask = orig - blurred
-    #     # add scaled mask back
-    #     sharpened = orig + self.amount * mask
-    #     # clip and convert back to uint8
-    #     np.clip(sharpened, 0, 255, out=sharpened)
-    #     image_data.image = sharpened.astype(np.uint8)
-    #     return image_data
-
-    def __init__(self, amount: float, next_filter=None):
+    def __init__(self, amount: float, wrapped_operation=None):
         """
         Initialize the sharpen filter with specified parameters.
 
         Args:
             amount: The amount of sharpening to apply (scaling factor for edges)
                 Recommended range: 0.0 to 5.0.
-            next_filter: The next filter in the chain (if any)
+            wrapped_operation: The operation to be wrapped
         """
-        super().__init__(next_filter)
+        super().__init__(wrapped_operation)
 
         # Validate amount parameter
         if amount < 0:

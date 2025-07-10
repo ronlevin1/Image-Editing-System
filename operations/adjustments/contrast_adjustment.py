@@ -10,16 +10,16 @@ class ContrastAdjustment(FilterDecorator):
     Concrete decorator for contrast adjustment using the Decorator pattern.
     """
 
-    def __init__(self, factor: float, next_filter=None):
+    def __init__(self, factor: float, wrapped_operation=None):
         """
         Initialize the contrast adjustment with specified parameters.
 
         Args:
             factor: The factor to adjust contrast by.
                    Range: -10.0 to 10.0 (negative decreases, positive increases contrast)
-            next_filter: The next filter in the chain (if any)
+            wrapped_operation: The next filter in the chain (if any)
         """
-        super().__init__(next_filter)
+        super().__init__(wrapped_operation)
 
         # Validate factor parameter
         if factor < -10.0 or factor > 10.0:
