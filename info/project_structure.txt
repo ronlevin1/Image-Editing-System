@@ -14,11 +14,15 @@ Lightricks_HA/
 │    │   ├── operation.py      # Abstract Operation interface
 │    │   └── filter_decorator.py
 │    ├── filters/
+│    │   ├── __init__.py
 │    │   ├── box_blur_filter.py
-│    │   └── ...
+│    │   ├── sharpen_filter.py
+│    │   └── sobel_filter.py
 │    ├── adjustments/
+│    │   ├── __init__.py
 │    │   ├── brightness_adjustment.py
-│    │   └── ...
+│    │   ├── contrast_adjustment.py
+│    │   └── saturation_adjustment.py
 │    ├── __init__.py
 │    └── operation_factory.py
 ├── tests/
@@ -30,4 +34,4 @@ Lightricks_HA/
 │   │   └── ...
 │   ├── pipeline_test.py
 │   └── ...
-└── ...
+└── README.md
