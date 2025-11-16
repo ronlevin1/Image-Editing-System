@@ -8,7 +8,6 @@ Lightricks_HA/
 │   ├── convolver.py      # Convolution engine
 │   └── pipeline.py       # Chains operations together
 ├── info/
-│   ├── ex_description.txt
 │   └── project_structure.txt   # You're here
 ├──operations/
 │    ├── base/
